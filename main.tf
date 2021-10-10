@@ -1,16 +1,7 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "2.66.0"
-    }
-  }
-}
-
-resource "azurerm_resource_group" "resource_group" {
+/*resource "azurerm_resource_group" "resource_group" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
-}
+}*/
 
 module "Action_Group" {
   source = "./Module/ActionGroup"
@@ -20,7 +11,7 @@ module "Action_Group" {
 module "application_gateway" {
   source = "./Module/application_gateway"
   resource_group_name = "${var.resource_group_name}"
-  scopes  = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Network/applicationGateways/rtrtyrtyrty"]
+  scopes  = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Network/applicationGateways/graceTest"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 
 }
@@ -28,62 +19,62 @@ module "application_gateway" {
 module "application_services" {
   source = "./Module/application_service"
   resource_group_name = "${var.resource_group_name}"
-  scopes            = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Web/sites/Testweb2009"]
+  scopes            = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Web/sites/graceochie"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 }
 
 module "Azure-DataFactory" {
   source = "./Module/Azure-DataFactory"
   resource_group_name = "${var.resource_group_name}"
-  scopes            = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.DataFactory/factories/TestDataFac0021"]
+  scopes            = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.DataFactory/factories/test3332"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 }
 
 module "Azure-AzureFirewall" {
   source = "./Module/AzureFirewall"
   resource_group_name = "${var.resource_group_name}"
-  scopes            = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Network/azureFirewalls/testfirewall"]
+  scopes            = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Network/azureFirewalls/test"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 }
 
 module "Azure-AzureStorage" {
   source = "./Module/AzureStorage"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/teststroage1992"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Storage/storageAccounts/teststoragemodule"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 }
 
 module "Azure-AzureFunction" {
   source = "./Module/AzureFunction"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourcegroups/TestRG/providers/Microsoft.Web/sites/testfunction1992"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourcegroups/module/providers/Microsoft.Web/sites/moduletest"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 }
 
 module "Azure-EventHub" {
   source = "./Module/EventHub"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.EventHub/namespaces/testeventhub1992"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.EventHub/namespaces/testhubnamemodule"]
   actiongroupid = "${module.Action_Group.actiongroup-id}" 
 }
 module "ExpressRoute" {
   source = "./Module/ExpressRoute"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Network/expressRouteCircuits/testExpressRoute"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Network/expressRouteCircuits/test"]
   actiongroupid = "${module.Action_Group.actiongroup-id}" 
 }
 
 module "Azure-AzureKeyvault" {
   source = "./Module/AzureKeyvault"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.KeyVault/vaults/aslkjdflkjaslfkwlk"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.KeyVault/vaults/testmodule"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
 } 
 
 module "Azure-API_Management" {
   source = "./Module/API_Management"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.ApiManagement/service/TestApiManagementooq"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourcegroups/module/providers/Microsoft.ApiManagement/service/testmanaged"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -91,7 +82,7 @@ module "Azure-API_Management" {
 module "Azure-AzureMySQL" {
   source = "./Module/AzureMySQL"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.DBforMySQL/servers/testserver1002"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.DBforMySQL/servers/testmodule"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -99,7 +90,7 @@ module "Azure-AzureMySQL" {
  module "Azure-LogicApp" {
   source = "./Module/LogicApp"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourcegroups/TestRG/providers/Microsoft.Logic/workflows/Testlogic"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Logic/workflows/testmodule"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -107,7 +98,7 @@ module "Azure-AzureMySQL" {
 module "Azure-MariaDB" {
   source = "./Module/MariaDB"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.DBforMariaDB/servers/test0012"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.DBforMariaDB/servers/testmodule23"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -115,7 +106,7 @@ module "Azure-MariaDB" {
 module "Azure-RedisCache" {
   source = "./Module/RedisCache"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Cache/Redis/test1002"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Cache/Redis/module"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -123,7 +114,7 @@ module "Azure-RedisCache" {
 module "Azure-ServiceBus" {
   source = "./Module/ServiceBus"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.ServiceBus/namespaces/testnametest"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.ServiceBus/namespaces/testmodulegr"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
@@ -131,22 +122,22 @@ module "Azure-ServiceBus" {
 module "Azure-SQL" {
   source = "./Module/SQL"
   resource_group_name = "${var.resource_group_name}"
-  scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Sql/servers/test1002/databases/test"]
+  scopes = ["/subscriptions/972be2cf-c564-43af-a4a9-049a10a94c28/resourceGroups/module/providers/Microsoft.Sql/servers/testmodulew/databases/modulesiri"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
 }
 
-module "Azure-SQL_Managed_Instance" {
+/*module "Azure-SQL_Managed_Instance" {
   source = "./Module/SQL_Managed_Instance"
   resource_group_name = "${var.resource_group_name}"
   scopes = ["/subscriptions/8435a856-66e7-4900-8698-4f2e69a9a53b/resourceGroups/TestRG/providers/Microsoft.Sql/managedInstances/test33554"]
   actiongroupid = "${module.Action_Group.actiongroup-id}"
   
-}
+}*/
 
 module "LogAnalytics" {
   source = "./Module/LogAnalytics"
-  resource_group_name = "${azurerm_resource_group.resource_group.name}"
+  resource_group_name = "${var.resource_group_name}"
 }
 
 #module "Azure-NetApp" {

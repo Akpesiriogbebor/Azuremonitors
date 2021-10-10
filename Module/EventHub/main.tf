@@ -7,14 +7,12 @@ resource "azurerm_monitor_metric_alert" "Azure-EventHubNamespaces-Status" {
           severity         =  4
           window_size      =  "PT5M"
 
-          dynamic_criteria {
+          criteria {
                 metric_namespace = "Microsoft.EventHub/namespaces"
                 metric_name      = "ActiveConnections"
                 aggregation      = "Minimum"
-                operator         = "GreaterOrLessThan"
-                alert_sensitivity        = "Medium"
-                evaluation_total_count   = 4
-                evaluation_failure_count = 4
+                operator         = "GreaterThan"
+                threshold        = 50
                 skip_metric_validation = "true"
           }
 

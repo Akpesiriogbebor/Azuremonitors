@@ -1,5 +1,3 @@
-
-
 resource "azurerm_monitor_metric_alert" "Azure-LogicApps-TriggersSucceeded" {
           name                = "Azure-LogicApps-TriggersSucceeded"
           resource_group_name = var.resource_group_name

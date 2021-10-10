@@ -31,7 +31,7 @@ variable "resource_group_name" {
 
 variable "StorageAccount" {
   description = "The name of the resource group we want to use"
-  default    = "adensatest"
+  default    = "adensatestggiiouf"
   
 }
 
